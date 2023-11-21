@@ -26,20 +26,21 @@ const input = document.querySelector('#todo');
 const ul = document.querySelector('ul');
 function addTodo(){
     if(input.value.trim() === ''){
-        console.log("enter value");
+        alert("enter value");
     }else{
         const li = document.createElement('li');
-        li.innerText = input.value;
-        // const text2 = document.createTextNode(input.value);
+        const text2 = document.createTextNode(input.value);
         const deleteBtn = document.createElement('button');
         const editBtn = document.createElement('button');
         const delText = document.createTextNode('Delete');
         const editText = document.createTextNode('Edit');
         deleteBtn.setAttribute('onclick' , 'deleteTodo(this)');
         editBtn.setAttribute('onclick' , 'editTodo(this)');
+        deleteBtn.setAttribute('class' , 'delete-btn');
+        editBtn.setAttribute('class' , 'edit-btn');
         deleteBtn.appendChild(delText);
         editBtn.appendChild(editText);
-        li.appendChild(text);
+        li.appendChild(text2);
         li.appendChild(deleteBtn);
         li.appendChild(editBtn);
         ul.appendChild(li);
@@ -52,9 +53,11 @@ function deleteTodo(element){
     console.log(element.parentNode);
     ul.removeChild(element.parentNode);
 }
-function editTodo(element){
-    console.log('todo edited');
-    console.log(element);
+ function editTodo(element) {
+        const newText = prompt('Enter updated text');
+        if (newText !== null) {
+            element.parentNode.firstChild.textContent = newText;
+        }
 }
 // const input = document.querySelector('#todo');
 // const ul = document.querySelector('ul');
